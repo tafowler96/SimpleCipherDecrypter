@@ -1,14 +1,52 @@
+<!DOCTYPE HTML>
+<!--
+	Identity by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
 	<head>
 		<title>Vigenere Decrypter</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="siteStyles.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body>
-		<textarea id="cipherText" placeholder="Cipher Text Goes Here"></textarea>
-		<input type="text" id="key" placeholder="Key"/>
-		<button id="decryptButton">Decrypt</button>
-		<textarea id="plainText" placeholder="Plaintext Will Go Here"></textarea>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main">
+						<header>
+							<h1>Vigenere Decrypter</h1>
+							<textarea class="forms" id="cipherText" placeholder="Cipher Text Goes Here"></textarea>
+							<button class="forms" id="decryptButton">Decrypt</button>
+							<input class="forms" type="text" id="key" placeholder="Key"/>
+							<textarea class="forms" id="plainText" placeholder="Plaintext Will Go Here"></textarea>
+						</header>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>Functionality: Tom Fowler</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+			<script src="scripts.js"></script>
 	</body>
-	
-		<script src="scripts.js"></script>
 </html>
