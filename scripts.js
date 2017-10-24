@@ -11,7 +11,8 @@ document.getElementById("decryptButton").onclick = function(){
 	    data:  JSON.stringify(inputData),
 		contentType: 'application/json; charset=utf-8',
 	    success: function (response) {
-			document.getElementById("plainText").textContent=response["body"];
+			document.getElementById("plainText").textContent=response["body"]["plainText"];
+			document.getElementById("key").value=response["body"]["key"];
 	    },
 	    error: function (xhr, exception) {
 			console.log(xhr);
