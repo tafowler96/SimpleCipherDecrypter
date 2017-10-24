@@ -1,4 +1,5 @@
 import json
+import re
 # Tests indices of coincidence of substrings with lengths up to 10
 # returns the length with the highest index of coincidence
 def getKeyLen(cipherText):
@@ -55,7 +56,7 @@ def getKey(cipherText, keyLen):
         for g in range(26):
             mg = 0
 
-            
+
             for freq in range(len(frequencies)):
                 mg += standardFreq[freq] * frequencies[(freq + g) % 26]/numLetters
             if mg > maxMG:
@@ -76,17 +77,25 @@ def decodeVig(cipherText, key):
                 plainText = plainText + chr((ord(i[j]) - 65 - (ord(key[j])-65)) % 26 + 65)
     return plainText
 
+def stripNonAlphabet(text):
+    return ''.join([i for i in text if i.isalpha()])
+
 def lambda_handler(event, context):
     C = event["body"]["cipherText"]
+    C = stripNonAlphabet(C).upper()
     keyLen = getKeyLen(C)
     key = getKey(C, keyLen)
-    
+    plainText = decodeVig(C, key)
+
     resp = {
         "statusCode": 200,
         "headers": {
             "Access-Control-Allow-Origin": "*"
         },
-        "body": key
+        "body": {
+            "key": key,
+            "plainText": plainText
+        }
     }
-    
+
     return resp
